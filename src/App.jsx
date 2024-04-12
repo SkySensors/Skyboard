@@ -4,6 +4,7 @@ import GraphGrid from './components/GraphGrid'
 import defaultTheme from './assets/theme'
 import { useMemo } from 'react'
 import Toolbar from './components/Toolbar'
+import "./GlobalStyle.scss"
 
 export default function App() {
 

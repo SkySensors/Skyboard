@@ -7,6 +7,7 @@ export default function defaultTheme() {
     const primaryColor = "#4855cb"
     const primaryTextColor = "#FFFFFF"
     const primaryHoverColor = "#7b85da"
+    const disabledTextColor = "#000000"
 
     const overrides = extendTheme({
         styles: {
@@ -23,6 +24,7 @@ export default function defaultTheme() {
             primaryColor: primaryColor,
             primaryTextColor: primaryTextColor,
             primaryHoverColor: primaryHoverColor,
+            disabledTextColor: disabledTextColor,
         },
         components: {
             Card: {

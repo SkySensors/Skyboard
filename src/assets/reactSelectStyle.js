@@ -19,7 +19,7 @@ export const selectStyle = () => {
                 ...styles, 
                 backgroundColor: bgColor,
                 color: textColor,
-                minWidth: "130px"
+                minWidth: "160px"
             }),
             input: (styles) => ({ 
                 ...styles,
