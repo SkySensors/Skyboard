@@ -2,7 +2,11 @@ import { extendTheme } from "@chakra-ui/react";
 
 export default function defaultTheme() {
     const dashboardBgColor = "#f6f7ff"
-    const cardBgColor = "#FFFFFF"
+    const bgColor = "#edeef7"
+    const textColor = "#000000"
+    const primaryColor = "#4855cb"
+    const primaryTextColor = "#FFFFFF"
+    const primaryHoverColor = "#7b85da"
 
     const overrides = extendTheme({
         styles: {
@@ -14,14 +18,18 @@ export default function defaultTheme() {
         },
         colors: {
             dashboardBgColor: dashboardBgColor,
-            cardBgColor: cardBgColor,
+            bgColor: bgColor,
+            textColor: textColor,
+            primaryColor: primaryColor,
+            primaryTextColor: primaryTextColor,
+            primaryHoverColor: primaryHoverColor,
         },
         components: {
             Card: {
                 variants: {
                     'Primary': {
                         container: {
-                            bg: "cardBgColor"
+                            bg: "bgColor"
                         }
                     }
                 },
