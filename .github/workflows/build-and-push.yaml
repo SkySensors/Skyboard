@@ -91,7 +91,8 @@ jobs:
                     type=semver,pattern={{version}}
                     type=semver,pattern={{major}}.{{minor}}
                     type=semver,pattern={{major}}
-                    type=sha   
+                    type=sha
+                    type=raw,value=${{steps.semver.outputs.version}}
 
 
             # Push the image to the registry, excluding push during pull requests.
@@ -105,4 +106,6 @@ jobs:
                   cache-from: type=gha
                   cache-to: type=gha,mode=max
                   tags: ${{ steps.meta.outputs.tags }}
-                  labels: ${{ steps.meta.outputs.labels }}
+                  labels: ${{ steps.meta.outputs.labels }}                  
+                  build-args: | 
+                    "VERSION=${{github.ref_type != 'tag' && steps.semver.outputs.version || format('v{0}.{1}.{2}', steps.semver.outputs.major, steps.semver.outputs.minor, steps.semver.outputs.patch)}}"
