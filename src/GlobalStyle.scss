@@ -6,18 +6,18 @@
     background-color: var(--chakra-colors-bgColor) !important;
 
     .react-datepicker__navigation--previous {
-        border-right-color: var(--chakra-colors-chakra-border-color) !important;
+        border-right-color: var(--chakra-colors-borderColor) !important;
 
         &:hover {
-            border-right-color: var(--chakra-colors-gray-300) !important;
+            border-right-color: var(--chakra-colors-borderColor) !important;
         }
     }
 
     .react-datepicker__navigation--next {
-        border-left-color: var(--chakra-colors-chakra-border-color) !important;
+        border-left-color: var(--chakra-colors-borderColor) !important;
 
         &:hover {
-            border-left-color: var(--chakra-colors-gray-300) !important;
+            border-left-color: var(--chakra-colors-borderColor) !important;
         }
     }
 
@@ -71,6 +71,7 @@
     .react-datetimerange-picker__wrapper {
         border: 1px solid;
         padding: 1px;
+        border-color: var(--chakra-colors-borderColor);
     }
 
     .react-datetimerange-picker__wrapper {
@@ -90,6 +91,7 @@
 
 .react-datetimerange-picker__calendar {
     width: 270px;
+    border: var(--chakra-colors-borderColor) 1px solid;
 }
 
 .DashboardDateRangePickerCalendar {
