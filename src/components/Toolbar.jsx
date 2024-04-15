@@ -18,7 +18,6 @@ export default function Toolbar() {
         { value: "jens3", label: "nice3" },
     ]
 
-    console.log('peek', selectedStation);
 
     return (
         <Flex bg={"bgColor"} gap={3} margin={"10px"} padding={3} borderRadius={"var(--chakra-radii-md)"}>
