@@ -74,7 +74,7 @@ export default function GraphGrid() {
                                         <Heading size='md'>{key}</Heading>
                                     </Center>
                                 </CardHeader>
-                                <EchartsGraph sensors={value} />
+                                <EchartsGraph sensors={value} type={key}/>
                             </Card>
                         </GridItem>
                     )
