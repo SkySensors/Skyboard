@@ -13,13 +13,15 @@ export const selectStyle = () => {
             menu: (styles) => ({ 
                 ...styles, 
                 backgroundColor: bgColor,
-                color: textColor
+                color: textColor,
             }),
             control: (styles) => ({ 
                 ...styles, 
                 backgroundColor: bgColor,
                 color: textColor,
-                minWidth: "160px"
+                minWidth: "160px",
+                cursor: "pointer",
+                borderColor: "var(--chakra-colors-borderColor)",
             }),
             input: (styles) => ({ 
                 ...styles,
@@ -39,6 +41,8 @@ export const selectStyle = () => {
                 ...styles,
                 backgroundColor: isSelected? primaryBgColor : isFocused? primaryBgHoverColor : bgColor,
                 color: isSelected || isFocused? primaryTextColor : textColor,
+                cursor: "pointer",
+                borderColor: "var(--chakra-colors-borderColor)",
             }),
         }
     }

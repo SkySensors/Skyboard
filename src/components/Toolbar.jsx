@@ -20,7 +20,7 @@ export default function Toolbar() {
 
 
     return (
-        <Flex bg={"bgColor"} gap={3} margin={"10px"} padding={3} borderRadius={"var(--chakra-radii-md)"}>
+        <Flex bg={"bgColor"} gap={3} margin={"10px 5%"} padding={3} borderRadius={"var(--chakra-radii-md)"}>
             <Box >
                 <Select
                     styles={selectStyles}

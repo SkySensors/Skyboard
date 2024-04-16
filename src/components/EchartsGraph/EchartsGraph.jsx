@@ -1,26 +1,54 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import ReactECharts from 'echarts-for-react';
 import "./echartsGraph.css"
 
-export default function EchartsGraph() {
-    const [option, setOption] = useState({
+export default function EchartsGraph({ sensors, type }) {
+  const [option, setOption] = useState({})
 
-        xAxis: {
-            type: 'category',
-            data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
-          },
-          yAxis: {
-            type: 'value'
-          },
-          series: [
-            {
-              data: [150, 230, 224, 218, 135, 147, 260],
-              type: 'line'
-            }
-          ]
+  useEffect(() => {
+    setOption({
+      xAxis: {
+        type: 'time',
+      },
+      yAxis: {
+        type: 'value',
+        max: type === "Humidity" ? 100 : null,
+        min: type === "Humidity" ? 0 : null
+      },
+      tooltip: {
+        trigger: 'axis',
+        valueFormatter:
+          type === "Humidity" ?
+            (value) => value + '%' // Humidity
+            :
+            type === "Temperature" ?
+              (value) => value + '°c' // Temperature
+              :
+              (value) => value + ' lumen' // Lumen
+      },
+      legend: {
+        show: true
+      },
+      series: sensors ?
+        sensors.map(sensor => {
+
+          return {
+            name: sensor.type,
+            data: sensor.sensorValues.map(value => [value.unixTime, value.value]),
+            type: 'line',
+          }
+        })
+        :
+        null
     })
 
-    return (
-        <ReactECharts option={option} className='echartsGraph'/>
-    )
+    return () => {
+
+    }
+  }, [sensors])
+
+
+  return (
+    <ReactECharts option={option} className='echartsGraph' />
+  )
 }
