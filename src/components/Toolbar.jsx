@@ -1,22 +1,26 @@
 import { Box, Center, Flex } from '@chakra-ui/react';
-import React, { useMemo, useState } from 'react'
-import Select from 'react-select';
-import { selectStyle } from '../assets/reactSelectStyle';
 import DateTimeRangePicker from '@wojtekmaj/react-datetimerange-picker';
 import '@wojtekmaj/react-datetimerange-picker/dist/DateTimeRangePicker.css';
-import { subDays } from 'date-fns';
+import React, { useMemo } from 'react';
+import Select from 'react-select';
+import { selectStyle } from '../assets/reactSelectStyle';
+import { useGetWeatherStationsQuery } from '../redux/services/apiSlice';
 
-export default function Toolbar() {
+export default function Toolbar({selectedStation, setSelectedStation, dateRange, setDateRange}) {
 
-    const [dateRange, setDateRange] = useState([subDays(new Date(), 1), new Date()]);
-    const [selectedStation, setSelectedStation] = useState(null)
+    const { data: weatherStations, isLoading } = useGetWeatherStationsQuery()
 
     const selectStyles = useMemo(() => selectStyle(), [])
-    const weatherStations = [
-        { value: "jens", label: "nice" },
-        { value: "jens2", label: "nice2" },
-        { value: "jens3", label: "nice3" },
-    ]
+
+    const weatherStationsOption = useMemo(() => {
+        if (weatherStations) {
+            return weatherStations.map(station => ({
+                value: station.macAddress, label: station.macAddress
+            }))
+        }
+
+        return []
+    },[weatherStations])
 
 
     return (
@@ -24,10 +28,11 @@ export default function Toolbar() {
             <Box >
                 <Select
                     styles={selectStyles}
-                    options={weatherStations}
+                    options={weatherStationsOption}
                     onChange={setSelectedStation}
                     value={selectedStation}
                     isClearable={true}
+                    isLoading={isLoading}
                 />
             </Box>
             <Center>
