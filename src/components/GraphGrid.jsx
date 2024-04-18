@@ -48,7 +48,7 @@ export default function GraphGrid({ selectedStation, dateRange }) {
 
                             return (
                                 <GridItem key={index} colSpan={shouldSpan ? 2 : 1}>
-                                    <Card h={'40vh'}>
+                                    <Card h={'30vh'}>
                                         <CardHeader p={2}>
                                             <Center>
                                                 <Heading size='md'>{key}</Heading>

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import ReactECharts from 'echarts-for-react';
-import "./echartsGraph.css"
 
 export default function EchartsGraph({ sensors, type }) {
   const [option, setOption] = useState({})
@@ -22,9 +21,12 @@ export default function EchartsGraph({ sensors, type }) {
             (value) => value + '%' // Humidity
             :
             type === "Temperature" ?
-              (value) => value + '°c' // Temperature
+              (value) => value + '°C' // Temperature
               :
-              (value) => value + ' lumen' // Lumen
+              type === "Light" ?
+                (value) => value + ' lumen' // Lumen
+                :
+                null
       },
       legend: {
         show: true
