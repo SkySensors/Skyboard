@@ -1,6 +1,6 @@
 import 'leaflet/dist/leaflet.css';
 import React from 'react';
-import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet';
+import { MapContainer, Marker, TileLayer, Tooltip } from 'react-leaflet';
 import { useGetWeatherStationsQuery } from '../redux/services/apiSlice';
 
 export default function DeviceMap() {
@@ -12,7 +12,7 @@ export default function DeviceMap() {
             {/* Add markers for weather stations */}
             {weatherStations && weatherStations.map(station => (
                 <Marker key={station.macAddress} position={[station.gpsLocation.latitude, station.gpsLocation.longitude]}>
-                    <Popup>{station.macAddress}</Popup>
+                    <Tooltip>{station.macAddress}</Tooltip>
                 </Marker>
             ))}
         </MapContainer>
