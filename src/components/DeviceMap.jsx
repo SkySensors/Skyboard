@@ -3,6 +3,7 @@ import React from 'react';
 import { MapContainer, Marker, TileLayer, Tooltip } from 'react-leaflet';
 import { useGetWeatherStationsQuery } from '../redux/services/apiSlice';
 import { icon } from 'leaflet';
+import weatherStationIcon from "/src/assets/icons/weatherStationIcon.png"
 
 export default function DeviceMap() {
     const { data: weatherStations } = useGetWeatherStationsQuery()
@@ -16,7 +17,7 @@ export default function DeviceMap() {
                 key={station.macAddress} 
                 position={[station.gpsLocation.latitude, station.gpsLocation.longitude]}
                 icon={icon({
-                    iconUrl: "/src/assets/icons/weatherStationIcon.png",
+                    iconUrl: weatherStationIcon,
                     iconSize: [42,42]
                 })}
                 >
