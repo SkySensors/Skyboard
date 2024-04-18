@@ -53,6 +53,6 @@ export default function EchartsGraph({ sensors, type }) {
 
 
   return (
-    <ReactECharts option={option} className='echartsGraph' />
+    <ReactECharts option={option} className='echartsGraph' notMerge={true}/>
   )
 }

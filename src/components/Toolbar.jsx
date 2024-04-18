@@ -33,6 +33,7 @@ export default function Toolbar({selectedStation, setSelectedStation, dateRange,
                     value={selectedStation}
                     isClearable={true}
                     isLoading={isLoading}
+                    placeholder="All"
                 />
             </Box>
             <Center>

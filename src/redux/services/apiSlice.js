@@ -10,10 +10,12 @@ export const apiSlice = createApi({
   }),
   endpoints: (builder) => ({
     getWeatherStationData: builder.query({
-      query: (params) => `WheatherStation?macAddress=${params.macAddress}&startTime=${params.startTime}&endTime=${params.endTime}`,
+      query: (params) => params.macAddress? 
+      `WeatherStation?macAddress=${params.macAddress}&startTime=${params.startTime}&endTime=${params.endTime}` 
+      : `WeatherStation/all?startTime=${params.startTime}&endTime=${params.endTime}`, // If no mac address, then use all endpoint
     }),
     getWeatherStations: builder.query({
-      query: (params) => `WheatherStation/list`,
+      query: (params) => `WeatherStation/list`,
     }),
   }),
 })

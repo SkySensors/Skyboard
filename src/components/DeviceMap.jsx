@@ -9,7 +9,7 @@ export default function DeviceMap() {
     const { data: weatherStations } = useGetWeatherStationsQuery()
 
     return (
-        <MapContainer center={[55.45116321550825, 11.79659457784343]} zoom={7} className='echartsGraph'>
+        <MapContainer center={[55.45116321550825, 11.79659457784343]} zoom={7} className='echartsGraph leafletStyle'>
             <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" attribution="&copy; OpenStreetMap contributors" />
             {/* Add markers for weather stations */}
             {weatherStations && weatherStations.map(station => (
