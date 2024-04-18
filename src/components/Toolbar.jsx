@@ -24,7 +24,7 @@ export default function Toolbar({selectedStation, setSelectedStation, dateRange,
 
 
     return (
-        <Flex bg={"bgColor"} gap={3} margin={"10px 5%"} padding={3} borderRadius={"var(--chakra-radii-md)"}>
+        <Flex bg={"bgColor"} gap={3} margin={"10px 5%"} padding={3} borderRadius={"var(--chakra-radii-md)"} justifyContent={"center"}>
             <Box >
                 <Select
                     styles={selectStyles}

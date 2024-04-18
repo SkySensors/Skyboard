@@ -1,4 +1,4 @@
-import { Box, Center, ChakraProvider } from '@chakra-ui/react'
+import { Box, Center, ChakraProvider, Flex } from '@chakra-ui/react'
 import './App.css'
 import GraphGrid from './components/GraphGrid'
 import defaultTheme from './assets/theme'
@@ -6,6 +6,7 @@ import { useMemo, useState } from 'react'
 import Toolbar from './components/Toolbar'
 import "./GlobalStyle.scss"
 import { subDays } from 'date-fns'
+import DeviceMap from './components/DeviceMap'
 
 export default function App() {
 
@@ -18,8 +19,14 @@ export default function App() {
     <ChakraProvider theme={theme}>
       <Center>
         <Box w={"95%"} h={"95%"}>
-          <Toolbar selectedStation={selectedStation} setSelectedStation={setSelectedStation} dateRange={dateRange} setDateRange={setDateRange}/>
-          <GraphGrid selectedStation={selectedStation} dateRange={dateRange}/>
+          <Toolbar selectedStation={selectedStation} setSelectedStation={setSelectedStation} dateRange={dateRange} setDateRange={setDateRange} />
+          <Flex direction={"column"} gap={6}>
+            <Box h={"20vh"}>
+              <DeviceMap />
+            </Box>
+            <GraphGrid selectedStation={selectedStation} dateRange={dateRange} />
+          </Flex>
+
         </Box>
       </Center>
     </ChakraProvider>
