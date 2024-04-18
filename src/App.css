@@ -2,3 +2,7 @@
     width: 100%;
     height: 100% !important;
 }
+
+.leafletStyle {
+    z-index: 0;
+}
