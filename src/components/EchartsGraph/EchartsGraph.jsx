@@ -36,6 +36,8 @@ export default function EchartsGraph({ sensors, type }) {
             name: sensor.type,
             data: sensor.sensorValues.map(value => [value.unixTime, value.value]),
             type: 'line',
+            sampling: 'lttb',
+            symbol: 'none',
           }
         })
         :
