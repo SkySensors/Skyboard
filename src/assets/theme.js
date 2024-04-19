@@ -40,6 +40,17 @@ export default function defaultTheme() {
                 defaultProps: {
                     variant: 'Primary'
                 }
+            },
+            Button: {
+                variants: {
+                    'Primary': {
+                        bg: "primaryColor",
+                        color: "primaryTextColor"
+                    }
+                },
+                defaultProps: {
+                    variant: 'Primary'
+                }
             }
         }
     })
