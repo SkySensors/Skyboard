@@ -16,6 +16,7 @@ export default function EchartsGraph({ sensors, type }) {
       },
       tooltip: {
         trigger: 'axis',
+        confine: true,
         valueFormatter:
           type === "Humidity" ?
             (value) => value + '%' // Humidity
