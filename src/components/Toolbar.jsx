@@ -1,4 +1,4 @@
-import { Box, Button, Center, Flex, Tooltip } from '@chakra-ui/react';
+import { Box, Button, Center, Flex, FormControl, FormLabel, Switch, Tooltip } from '@chakra-ui/react';
 import DateTimeRangePicker from '@wojtekmaj/react-datetimerange-picker';
 import '@wojtekmaj/react-datetimerange-picker/dist/DateTimeRangePicker.css';
 import React, { useMemo } from 'react';
@@ -6,7 +6,7 @@ import Select from 'react-select';
 import { selectStyle } from '../assets/reactSelectStyle';
 import { useGetWeatherStationsQuery } from '../redux/services/apiSlice';
 
-export default function Toolbar({ selectedStation, setSelectedStation, dateRange, setDateRange }) {
+export default function Toolbar({ selectedStation, setSelectedStation, dateRange, setDateRange, calibratedValues, setCalibratedValues }) {
 
     const { data: weatherStations, isLoading } = useGetWeatherStationsQuery()
 
@@ -27,9 +27,19 @@ export default function Toolbar({ selectedStation, setSelectedStation, dateRange
         setDateRange([dateRange[0], new Date()])
     }
 
+    const handleSetCalibratedValues = (evt) => {
+        setCalibratedValues(evt.target.checked)
+    }
+
 
     return (
-        <Flex bg={"bgColor"} gap={3} margin={"10px 5%"} padding={3} borderRadius={"var(--chakra-radii-md)"} justifyContent={"center"} flexFlow={"wrap"}>
+        <Flex bg={"bgColor"} gap={3} margin={"10px 0px"} padding={3} borderRadius={"var(--chakra-radii-md)"} justifyContent={"center"} flexFlow={"wrap"}>
+            <Center>
+                <FormControl display='flex' alignItems='center'>
+                    <FormLabel marginBottom={0}>Calibrated Values</FormLabel>
+                    <Switch id='calibratedValues' isChecked={calibratedValues} onChange={handleSetCalibratedValues}/>
+                </FormControl>
+            </Center>
             <Box>
                 <Select
                     styles={selectStyles}

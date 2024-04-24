@@ -51,6 +51,20 @@ export default function defaultTheme() {
                 defaultProps: {
                     variant: 'Primary'
                 }
+            },
+            Switch: {
+                variants: {
+                    'Primary': {
+                        track: {
+                            _checked: {
+                                bg: 'primaryColor',
+                            },
+                        }
+                    }
+                },
+                defaultProps: {
+                    variant: 'Primary'
+                }
             }
         }
     })
