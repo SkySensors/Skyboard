@@ -14,6 +14,11 @@ export default function EchartsGraph({ sensors, type }) {
         max: type === "Humidity" ? 100 : null,
         min: type === "Humidity" ? 0 : null
       },
+      grid: {
+        bottom: "40px",
+        left: "40px",
+        right: "15px",
+      },
       tooltip: {
         trigger: 'axis',
         confine: true,

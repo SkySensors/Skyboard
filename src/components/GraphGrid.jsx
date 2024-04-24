@@ -4,12 +4,13 @@ import EchartsGraph from './EchartsGraph/EchartsGraph'
 import { groupSensors } from '../util/sensorGraphHelper'
 import { useGetWeatherStationDataQuery } from '../redux/services/apiSlice'
 
-export default function GraphGrid({ selectedStation, dateRange }) {
+export default function GraphGrid({ selectedStation, dateRange, calibratedValues }) {
 
     const { data: weatherStationsData, error } = useGetWeatherStationDataQuery({
         macAddress: selectedStation?.value ?? null,
         startTime: dateRange[0].getTime(),
-        endTime: dateRange[1].getTime()
+        endTime: dateRange[1].getTime(),
+        isCalibrated: calibratedValues
     })
 
     const groupedSensors = useMemo(() => groupSensors(weatherStationsData), [weatherStationsData])
