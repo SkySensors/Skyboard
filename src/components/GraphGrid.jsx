@@ -6,7 +6,7 @@ import { useGetWeatherStationDataQuery } from '../redux/services/apiSlice'
 
 export default function GraphGrid({ selectedStation, dateRange, calibratedValues }) {
 
-    const { data: weatherStationsData, error } = useGetWeatherStationDataQuery({
+    const { data: weatherStationsData, error, isFetching: weatherStationFetching } = useGetWeatherStationDataQuery({
         macAddress: selectedStation?.value ?? null,
         startTime: dateRange[0].getTime(),
         endTime: dateRange[1].getTime(),
@@ -14,6 +14,21 @@ export default function GraphGrid({ selectedStation, dateRange, calibratedValues
     })
 
     const groupedSensors = useMemo(() => groupSensors(weatherStationsData), [weatherStationsData])
+
+    const translateTypeToDanish = (type) => {
+        // SINCE THIS IS THE ONLY THING NEEDED TO BE TRANSLATED, DO IT SIMPLE
+        // USUALLY A TRANSLATION LAYER WOULD BE ADDED
+        switch (type) {
+            case "Temperature":
+                return "Temperatur"
+            case "Humidity":
+                return "Fugtighed"
+            case "Light":
+                return "Lys"
+            default:
+                return type
+        }
+    }
 
     return error ?
         <Center>
@@ -42,7 +57,7 @@ export default function GraphGrid({ selectedStation, dateRange, calibratedValues
                                 <Card h={'30vh'}>
                                     <CardHeader p={2}>
                                         <Center>
-                                            <Heading size='md'>{key}</Heading>
+                                            <Heading size='md'>{translateTypeToDanish(key)}</Heading>
                                         </Center>
                                     </CardHeader>
                                     <EchartsGraph sensors={value} type={key} />

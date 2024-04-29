@@ -19,7 +19,7 @@ export const selectStyle = () => {
                 ...styles, 
                 backgroundColor: bgColor,
                 color: textColor,
-                minWidth: "240px",
+                minWidth: "180px",
                 cursor: "pointer",
                 borderColor: "var(--chakra-colors-borderColor)",
             }),
