@@ -45,7 +45,10 @@ export default function defaultTheme() {
                 variants: {
                     'Primary': {
                         bg: "primaryColor",
-                        color: "primaryTextColor"
+                        color: "primaryTextColor",
+                        _hover: {
+                            bg: "primaryHoverColor",
+                        }
                     }
                 },
                 defaultProps: {

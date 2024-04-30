@@ -1,7 +1,7 @@
-import { Box, Button, Center, Flex, FormControl, FormLabel, Switch, Tooltip } from '@chakra-ui/react';
+import { Box, Button, Center, Flex, FormControl, FormLabel, Switch } from '@chakra-ui/react';
 import DateTimeRangePicker from '@wojtekmaj/react-datetimerange-picker';
 import '@wojtekmaj/react-datetimerange-picker/dist/DateTimeRangePicker.css';
-import React, { useMemo } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import Select from 'react-select';
 import { selectStyle } from '../assets/reactSelectStyle';
 import { useGetWeatherStationsQuery } from '../redux/services/apiSlice';
@@ -9,6 +9,8 @@ import { useGetWeatherStationsQuery } from '../redux/services/apiSlice';
 export default function Toolbar({ selectedStation, setSelectedStation, dateRange, setDateRange, calibratedValues, setCalibratedValues }) {
 
     const { data: weatherStations, isLoading } = useGetWeatherStationsQuery()
+
+    const [intervalIsActive, setIntervalIsActive] = useState(false);
 
     const selectStyles = useMemo(() => selectStyle(), [])
 
@@ -31,13 +33,28 @@ export default function Toolbar({ selectedStation, setSelectedStation, dateRange
         setCalibratedValues(evt.target.checked)
     }
 
+    const toggleInterval = () => {
+        setIntervalIsActive(prevState => !prevState);
+    };
+
+    useEffect(() => {
+        let intervalId;
+
+        if (intervalIsActive) {
+            intervalId = setInterval(() => {
+                handleSetTimeToNow()
+            }, 10000);
+        }
+
+        return () => clearInterval(intervalId);
+    }, [intervalIsActive, dateRange]);
 
     return (
-        <Flex bg={"bgColor"} gap={3} margin={"10px 0px"} padding={3} borderRadius={"var(--chakra-radii-md)"} justifyContent={"center"} flexFlow={"wrap"}>
+        <Flex bg={"bgColor"} gap={3} margin={"10px 0px"} padding={2} borderRadius={"var(--chakra-radii-md)"} justifyContent={"center"} flexFlow={"wrap"}>
             <Center>
                 <FormControl display='flex' alignItems='center'>
-                    <FormLabel marginBottom={0}>Calibrated Values</FormLabel>
-                    <Switch id='calibratedValues' isChecked={calibratedValues} onChange={handleSetCalibratedValues}/>
+                    <FormLabel marginBottom={0}>Kalibrerede værdier</FormLabel>
+                    <Switch id='calibratedValues' isChecked={calibratedValues} onChange={handleSetCalibratedValues} />
                 </FormControl>
             </Center>
             <Box>
@@ -48,7 +65,7 @@ export default function Toolbar({ selectedStation, setSelectedStation, dateRange
                     value={selectedStation}
                     isClearable={true}
                     isLoading={isLoading}
-                    placeholder="Filter Weather Station"
+                    placeholder="Filtrer Vejrstation"
                 />
             </Box>
             <Center>
@@ -64,12 +81,10 @@ export default function Toolbar({ selectedStation, setSelectedStation, dateRange
                 />
             </Center>
             <Center>
-                <Tooltip label="Set end date to now">
-                    <Button size={"sm"}
-                        onClick={handleSetTimeToNow}>
-                        Refresh
-                    </Button>
-                </Tooltip>
+                <Button size={"sm"}
+                    onClick={toggleInterval}>
+                    {intervalIsActive ? 'Stop Live Opdatering' : 'Start Live Opdatering'}
+                </Button>
             </Center>
         </Flex>
     )
