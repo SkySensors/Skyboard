@@ -53,7 +53,7 @@ export default function GraphGrid({ selectedStation, dateRange, calibratedValues
                         const shouldSpan = arrayLength - 1 === index && index % 2 === 0
 
                         return (
-                            <GridItem key={key} colSpan={shouldSpan ? 2 : 1}>
+                            <GridItem key={index} colSpan={shouldSpan ? 2 : 1}>
                                 <Card h={'30vh'}>
                                     <CardHeader p={2}>
                                         <Center>
